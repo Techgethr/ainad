@@ -101,7 +101,7 @@ export const deployErc20Tool: ToolConfig = {
     /**
      * Log a message to the console with the contract address.
      */
-    console.log(`Contract deployed at address: ${receipt.contractAddress}`);
+    //console.log(`Contract deployed at address: ${receipt.contractAddress}`);
 
     /**
      * Return a success message with the contract address.
