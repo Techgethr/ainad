@@ -1,4 +1,4 @@
-import { createWalletClient, http } from "viem";
+import { createWalletClient, http, publicActions } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { monadTestnet } from "./configureMonadChain";
 
@@ -29,5 +29,5 @@ export function createViemWalletClient() {
     account,
     chain: monadTestnet,
     transport: http(),
-  });
+  }).extend(publicActions);
 }

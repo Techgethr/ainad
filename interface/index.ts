@@ -70,3 +70,21 @@ export interface SendTransactionArgs {
    */
   amount: string;
 }
+
+/**
+ * Arguments for the execute_swap tool
+ */
+ export interface ExecuteSwapArgs {
+  /**
+   * The token to swap
+   */
+  from: string;
+  /**
+   * The token to get
+   */
+  to: string;
+  /**
+   * The amount to swap
+   */
+  amount: string;
+}

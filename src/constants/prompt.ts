@@ -23,6 +23,7 @@ READ OPERATIONS:
 WRITE OPERATIONS:
 - Send blockchain transactions using send_transaction
 - Deploy ERC20 tokens using deploy_erc20
+- Execute/make a swap between 2 coins/tokens using execute_swap
 
 When executing operations:
 1. ALWAYS use reasonable defaults when specific values aren't provided:
