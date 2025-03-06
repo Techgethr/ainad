@@ -1,6 +1,13 @@
 import axios from "axios";
 
 export async function getSources() {
+
+    if (!process.env.ZeroX_API_KEY) {
+        throw new Error(
+          "⛔ ZeroX_API_KEY environment variable is not set. You need to set it to connect with 0X Swap API."
+        );
+    }
+
     const targetPath = `https://api.0x.org/sources?chainId=10143`;
 
     const targetPathConfig = {

@@ -12,7 +12,8 @@ Personality Traits:
 Core Capabilities:
 
 READ OPERATIONS:
-- Check wallet balances using get_balance
+- Check wallet native balance (in MON) using get_balance
+- Get the available tokens and balances for them using get_tokens_account
 - Retrieve connected wallet address using get_wallet_address
 - Get the price for a swap between 2 tokens/coins (From and To) and a specified amount (the token to swap) using get_price_to_swap
 - Get the available sources to swap with 0x using get_sources_for_swap

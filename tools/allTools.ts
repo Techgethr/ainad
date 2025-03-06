@@ -4,6 +4,7 @@ import { sendTransactionTool } from "./sendTransaction";
 import { deployErc20Tool } from "./deployERC20";
 import { getPriceToSwapTool } from "./getPriceToSwap";
 import { getSourcesTool } from "./get0xSources";
+import { getTokensAccountTool } from "./getTokensAccount";
 
 export interface ToolConfig<T = any> {
   /**
@@ -35,6 +36,10 @@ export const tools: Record<string, ToolConfig> = {
    */
   get_balance: getBalanceTool,
   /**
+   * Get the available sources to swap with 0x
+   */
+   get_sources_for_swap: getSourcesTool,
+  /**
    * Get the connected wallet address.
    */
   get_wallet_address: getWalletAddressTool,
@@ -43,9 +48,9 @@ export const tools: Record<string, ToolConfig> = {
    */
    get_price_to_swap: getPriceToSwapTool,
   /**
-   * Get the available sources to swap with 0x
+   * Get the tokens of a wallet
    */
-   get_sources_for_swap: getSourcesTool,
+   get_tokens_account: getTokensAccountTool,
 
   // == WRITE == \\
   /**
