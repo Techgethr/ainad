@@ -16,11 +16,11 @@ export const getPriceToSwapTool: ToolConfig<GetPriceToSwapArgs> = {
         properties: {
           from: {
             type: "string",
-            description: "The token/coin to make a swap",
+            description: "The contract Id of the token/coin to make a swap",
           },
           to: {
             type: "string",
-            description: "The token/coin to get after the swap",
+            description: "The contract Id of the token/coin to get after the swap",
           },
           amount: {
             type: "number",
@@ -37,6 +37,6 @@ export const getPriceToSwapTool: ToolConfig<GetPriceToSwapArgs> = {
 };
 
 async function getPriceToSwap(from:string, to:string, amount:string) {
-  const price = await getIndicativePrice("0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE","0x88b8E2161DEDC77EF4ab7585569D2415a1C1055D","10000000000000");
+  const price = await getIndicativePrice(from,to,amount);
   return price;
 }

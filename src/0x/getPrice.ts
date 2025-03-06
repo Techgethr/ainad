@@ -1,5 +1,5 @@
 import { createClientV2 } from '@0x/swap-ts-sdk';
-
+import {tokensAvailable} from "../constants/tokens";
 
 
 export async function getIndicativePrice(token_to_sell:string, token_to_buy:string, amount:string) {
@@ -12,12 +12,14 @@ export async function getIndicativePrice(token_to_sell:string, token_to_buy:stri
     const client = createClientV2({
         apiKey: process.env.ZeroX_API_KEY,
     });
-
+    const tokenOrigin = tokensAvailable.find((t) => t.contractId === token_to_sell);
+    const tokenDestination = tokensAvailable.find((t) => t.contractId === token_to_buy);
+    const amountWithDecimals = Number(amount) * 10** tokenOrigin.decimals;
     const price = await client.swap.permit2.getPrice.query({
         buyToken: token_to_buy,
         chainId: 10143,
-        sellAmount: amount,
+        sellAmount: amountWithDecimals,
         sellToken: token_to_sell
     });
-    return price.buyAmount / 10**6;
+    return price.buyAmount / 10**tokenDestination?.decimals;
 }
