@@ -1,28 +1,28 @@
-import { getTokensForAccount } from "../src/blockvision/getTokensForAccount";
+import { getActivitiesForAccount } from "../src/blockvision/getActivitiesForAccount";
 import type { ToolConfig } from "./allTools.js";
 import { formatEther } from "viem";
 
 import type { GetBalanceArgs } from "../interface/index.js";
 
 /**
- * Get the balances of all the tokens of a wallet.
+ * Get the activities of a wallet.
  *
  * This tool takes a single parameter, the wallet address to get the balance
  * from.
  */
-export const getTokensAccountTool: ToolConfig<GetBalanceArgs> = {
+export const getActivitiesAccountTool: ToolConfig<GetBalanceArgs> = {
   definition: {
     type: "function",
     function: {
-      name: "get_tokens_account",
-      description: "Get the tokens of a wallet",
+      name: "get_activities_account",
+      description: "Get the activities of a wallet",
       parameters: {
         type: "object",
         properties: {
           wallet: {
             type: "string",
             pattern: "^0x[a-fA-F0-9]{40}$",
-            description: "The wallet address to get the tokens from",
+            description: "The wallet address to get the activities from",
           },
         },
         required: ["wallet"],
@@ -35,6 +35,6 @@ export const getTokensAccountTool: ToolConfig<GetBalanceArgs> = {
 };
 
 async function getBalance(wallet: string) {
-  const balance = await getTokensForAccount(wallet);
-  return balance;
+  const activities = await getActivitiesForAccount(wallet);
+  return activities;
 }

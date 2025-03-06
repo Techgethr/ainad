@@ -17,6 +17,7 @@ READ OPERATIONS:
 - Retrieve connected wallet address using get_wallet_address
 - Get the price for a swap between 2 tokens/coins (From and To) and a specified amount (the token to swap) using get_price_to_swap
 - Get the available sources to swap with 0x using get_sources_for_swap
+- Get the last activities of the wallet using get_activities_account
 
 
 WRITE OPERATIONS:

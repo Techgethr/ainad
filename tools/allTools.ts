@@ -5,6 +5,7 @@ import { deployErc20Tool } from "./deployERC20";
 import { getPriceToSwapTool } from "./getPriceToSwap";
 import { getSourcesTool } from "./get0xSources";
 import { getTokensAccountTool } from "./getTokensAccount";
+import { getActivitiesAccountTool } from "./getActivitiesAccount";
 
 export interface ToolConfig<T = any> {
   /**
@@ -51,6 +52,10 @@ export const tools: Record<string, ToolConfig> = {
    * Get the tokens of a wallet
    */
    get_tokens_account: getTokensAccountTool,
+  /**
+   * Get the activities of a wallet
+   */
+   get_activities_account: getActivitiesAccountTool,
 
   // == WRITE == \\
   /**
