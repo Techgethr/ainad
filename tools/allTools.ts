@@ -3,6 +3,7 @@ import { getWalletAddressTool } from "./getWalletAddress";
 import { sendTransactionTool } from "./sendTransaction";
 import { deployErc20Tool } from "./deployERC20";
 import { getPriceToSwapTool } from "./getPriceToSwap";
+import { getSourcesTool } from "./get0xSources";
 
 export interface ToolConfig<T = any> {
   /**
@@ -41,6 +42,10 @@ export const tools: Record<string, ToolConfig> = {
    * Get the price for a swap
    */
    get_price_to_swap: getPriceToSwapTool,
+  /**
+   * Get the available sources to swap with 0x
+   */
+   get_sources_for_swap: getSourcesTool,
 
   // == WRITE == \\
   /**
