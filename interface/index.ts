@@ -51,3 +51,22 @@ export interface SendTransactionArgs {
    */
   paymasterInput?: `0x${string}`;
 }
+
+
+/**
+ * Arguments for the get_price_to_swap tool
+ */
+ export interface GetPriceToSwapArgs {
+  /**
+   * The token to swap
+   */
+  from: string;
+  /**
+   * The token to get
+   */
+  to: string;
+  /**
+   * The amount to swap
+   */
+  amount: string;
+}
