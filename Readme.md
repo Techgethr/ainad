@@ -25,3 +25,47 @@ There are already many frameworks designed to connect AI agents to Blockchain, b
 - **Staking Management**: Check your staked tokens, stake and unstake using [aPriori Protocol](https://www.apr.io/).
 - **Error Handling**: Robust error handling and feedback for failed operations.
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- TypeScript
+- [OpenAI API key](https://platform.openai.com/) to enable the AI agent.
+- [0x API Key](https://dashboard.0x.org/create-account) to query prices and swaps.
+- [BlockVision API Key](https://blockvision.org/) to query wallet transactions and balances.
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/techgethr/ainad.git
+   cd ainad
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   bun install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add your OpenAI API key, wallet key file and other information for the network:
+   ```plaintext
+    OPENAI_API_KEY=************ enter your OpenAI key here
+    WALLET_PRIVATE_KEY=**************** enter your wallet private key here (without the "0x" part, just the rest)
+    ASSISTANT_NAME=******************* a name for your AI assistant
+    ZeroX_API_KEY=************** enter the api key from 0x
+    BLOCKVISION_API_KEY=********** enter your api key from Blockvision.org
+   ```
+
+### Usage
+
+To start the assistant, run:
+
+```bash
+bun run src/index.ts
+```
+
+You can then interact with the assistant in the command line. Type "exit" to end the conversation.
