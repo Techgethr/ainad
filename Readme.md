@@ -96,13 +96,76 @@ The assistant has access to various tools for performing blockchain operations:
 - **unstake_mon**: Unstake an amount of MON using [aPriori Protocol](https://www.apr.io/)
 
 
+## Codebase Flow
+
+The following sequence diagram illustrates the core flow of the application:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Main
+    participant Assistant
+    participant Thread
+    participant Tools
+    participant Blockchain
+
+    User->>Main: Start Application
+    Main->>Assistant: Create Assistant
+    Main->>Thread: Create Thread
+    
+    loop Chat Session
+        User->>Main: Enter Command
+        alt Command == "exit"
+            Main->>User: End Session
+        else Valid Command
+            Main->>Thread: Add Message
+            Thread->>Assistant: Process Message
+            
+            opt Requires Blockchain Action
+                Assistant->>Tools: Call Tool
+                Tools->>Blockchain: Execute Operation
+                Blockchain-->>Tools: Return Result
+                Tools-->>Assistant: Return Response
+            end
+            
+            Assistant-->>Thread: Update Thread
+            Thread-->>Main: Return Response
+            Main->>User: Display Response
+        end
+    end
+```
+
+### Diagram Explanation
+
+The sequence diagram above shows the interaction flow between different components:
+
+1. **Initialization**:
+   - AINad starts with creating an OpenAI Assistant
+   - A new Thread is created for the conversation
+
+2. **Chat Session Loop**:
+   - User enters commands through the CLI
+   - Commands are processed through the Thread and Assistant
+   - For blockchain operations in Monad, specific Tools are called
+   - Results are returned through the chain of components
+
+3. **Blockchain Integration**:
+   - Tools interface with the blockchain through typescript sdks client
+   - Operations are executed on the Monad network
+   - Results are propagated back to the user
+
+4. **Session Management**:
+   - Users can exit the application at any time
+   - Each command is processed in a sequential manner
+   - Responses are displayed back to the user
+
 
 ## Team
 
-Company: [Techgethr](https://www.techgethr.com/), a Blockchain and Web3 Venture Builder
+- Company: [Techgethr](https://www.techgethr.com/), a Blockchain and Web3 Venture Builder
 
-Nestor Campos (developer): https://www.linkedin.com/in/nescampos/
-Valentina Campos (prompt engineer and user experience) https://www.linkedin.com/in/valentina-campos-1a8959234/
+1. Nestor Campos (developer): https://www.linkedin.com/in/nescampos/
+2. Valentina Campos (prompt engineer and user experience) https://www.linkedin.com/in/valentina-campos-1a8959234/
 
 
 ## Contributing
