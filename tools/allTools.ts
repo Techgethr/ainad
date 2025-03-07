@@ -7,6 +7,8 @@ import { getSourcesTool } from "./get0xSources";
 import { getTokensAccountTool } from "./getTokensAccount";
 import { getActivitiesAccountTool } from "./getActivitiesAccount";
 import { executeSwapTool } from "./executeSwapTokens";
+import { getStakingBalanceTool } from "./getStakingBalance";
+import { getStakingRateFromMONTool } from "./getStakingRateFromMON";
 
 export interface ToolConfig<T = any> {
   /**
@@ -57,6 +59,14 @@ export const tools: Record<string, ToolConfig> = {
    * Get the activities of a wallet
    */
    get_activities_account: getActivitiesAccountTool,
+  /**
+   * Get the balance in staking of a wallet
+   */
+   get_staking_balance: getStakingBalanceTool,
+  /**
+   * Fetch the rate to get the amount of aprMON if MON is staked
+   */
+   get_staking_rate_from_mon: getStakingRateFromMONTool,
 
   // == WRITE == \\
   /**

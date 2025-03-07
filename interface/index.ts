@@ -72,6 +72,16 @@ export interface SendTransactionArgs {
 }
 
 /**
+ * Arguments for the get_staking_rate_from_mon and get_staking_rate_from_aprmon tools
+ */
+ export interface FetchRateArgs {
+  /**
+   * The amount to fetch the rates
+   */
+  amount: number;
+}
+
+/**
  * Arguments for the execute_swap tool
  */
  export interface ExecuteSwapArgs {
