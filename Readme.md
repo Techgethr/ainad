@@ -69,3 +69,46 @@ bun run src/index.ts
 ```
 
 You can then interact with the assistant in the command line. Type "exit" to end the conversation.
+
+### Tools
+
+The assistant has access to various tools for performing blockchain operations:
+
+#### Read Operations
+- **get_balance**: Check wallet balance (in MON)
+- **get_wallet_address**: Retrieve the connected wallet's address
+- **get_tokens_account**: Get all the available tokens and balances using [BlockVision](https://blockvision.org/)
+- **get_price_to_swap**: Get the price for a swap between 2 tokens/coins (From and To) and a specified amount (the token to swap) using [0x](https://0x.org/)
+- **get_sources_for_swap**: Get the available sources (DEXs) to swap with 0x
+- **get_activities_account**: Get the last activities of the wallet using [BlockVision](https://blockvision.org/)
+- **get_staking_balance**:  Get the balance in staking (staked balance, in aprMON) in the [aPriori Protocol](https://www.apr.io/)
+- **get_staking_rate_from_mon**: Fetch the rate to get the amount of aprMON if an amount in MON is staked
+- **get_staking_rate_from_aprmon**: Fetch the rate to get the amount of MON if an amount in aprMON is unstaked
+
+
+#### Write Operations
+- **send_transaction**: Send transactions with customizable parameters including:
+  - Transaction value in MON or any token
+  - Address.
+- **deploy_erc20**: Deploy ERC20 tokens with a name, symbol and supply.
+- **execute_swap**: Execute/make a swap between coins/tokens using [0x](https://0x.org/)
+- **stake_mon**: Stake an amount of MON to receive aprMON using [aPriori Protocol](https://www.apr.io/)
+- **unstake_mon**: Unstake an amount of MON using [aPriori Protocol](https://www.apr.io/)
+
+
+
+## Team
+
+Company: [Techgethr](https://www.techgethr.com/), a Blockchain and Web3 Venture Builder
+
+Nestor Campos (developer): https://www.linkedin.com/in/nescampos/
+Valentina Campos (prompt engineer and user experience) https://www.linkedin.com/in/valentina-campos-1a8959234/
+
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
