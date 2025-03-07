@@ -95,6 +95,14 @@ The assistant has access to various tools for performing blockchain operations:
 - **stake_mon**: Stake an amount of MON to receive aprMON using [aPriori Protocol](https://www.apr.io/)
 - **unstake_mon**: Unstake an amount of MON using [aPriori Protocol](https://www.apr.io/)
 
+#### How to extend
+
+1. Create the actions in the [src](./src/) folder
+2. Create a new tool file in the [tools](./tools/) folder.
+3. Add the function in the tool with unique name.
+4. Register the tool in [allTools](./tools/allTools.ts)
+5. Update the prompt (**in the prompt file inside the constants folder**) for the assistant to understand when it must run the tool.
+
 
 ## Codebase Flow
 
@@ -162,7 +170,7 @@ The sequence diagram above shows the interaction flow between different componen
 
 ## Team
 
-- Company: [Techgethr](https://www.techgethr.com/), a Blockchain and Web3 Venture Builder
+**Company**: [Techgethr](https://www.techgethr.com/), a Blockchain and Web3 Venture Builder
 
 1. Nestor Campos (developer): https://www.linkedin.com/in/nescampos/
 2. Valentina Campos (prompt engineer and user experience) https://www.linkedin.com/in/valentina-campos-1a8959234/
