@@ -1,4 +1,4 @@
-import { getAprMONFromMON } from "../src/apriori/fetchRates";
+import { getAprMONFromMON, getMONFromAprMON } from "../src/apriori/fetchRates";
 import type { ToolConfig } from "./allTools.js";
 import { formatEther } from "viem";
 
@@ -10,7 +10,7 @@ import type { FetchRateArgs } from "../interface/index.js";
  * This tool takes a single parameter, the amount
  * from.
  */
-export const getStakingRateFromMONTool: ToolConfig<FetchRateArgs> = {
+export const getStakingRateFromAprMONTool: ToolConfig<FetchRateArgs> = {
   definition: {
     type: "function",
     function: {
@@ -35,6 +35,6 @@ export const getStakingRateFromMONTool: ToolConfig<FetchRateArgs> = {
 };
 
 async function getStakingRateFromMON(amount:number) {
-  const balance = await getAprMONFromMON(amount);
+  const balance = await getMONFromAprMON(amount);
   return formatEther(balance);
 }

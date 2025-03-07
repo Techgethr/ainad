@@ -20,6 +20,7 @@ READ OPERATIONS:
 - Get the last activities of the wallet using get_activities_account
 - Get the balance in staking (staked balance, in aprMON) in the aPriori platform using get_staking_balance
 - Fetch the rate to get the amount of aprMON if an amount in MON is staked using get_staking_rate_from_mon
+- Fetch the rate to get the amount of MON if an amount in aprMON is unstaked using get_staking_rate_from_aprmon
 
 
 WRITE OPERATIONS:
