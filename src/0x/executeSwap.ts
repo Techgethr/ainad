@@ -53,18 +53,18 @@ export async function executeSwap(token_to_sell:string, token_to_buy:string, amo
                 price.issues.allowance.spender,
                 maxUint256,
               ]);
-              console.log("Approving Permit2 to spend sellToken...", request);
+              //console.log("Approving Permit2 to spend sellToken...", request);
               // set approval
               const hash = await sellToken.write.approve(request.args);
-              console.log(
-                "Approved Permit2 to spend sellToken.",
-                await publicClient.waitForTransactionReceipt({ hash })
-              );
+            //   console.log(
+            //     "Approved Permit2 to spend sellToken.",
+            //     await publicClient.waitForTransactionReceipt({ hash })
+            //   );
             } catch (error) {
-              console.log("Error approving Permit2:", error);
+              //console.log("Error approving Permit2:", error);
             }
           } else {
-            console.log("sellToken already approved for Permit2");
+            //console.log("sellToken already approved for Permit2");
           }
     }
     // 3. fetch quote
@@ -87,9 +87,9 @@ export async function executeSwap(token_to_sell:string, token_to_buy:string, amo
   if (quote.permit2?.eip712) {
     try {
       signature = await publicClient.signTypedData(quote.permit2.eip712);
-      console.log("Signed permit2 message from quote response");
+      //console.log("Signed permit2 message from quote response");
     } catch (error) {
-      console.error("Error signing permit2 coupon:", error);
+      //console.error("Error signing permit2 coupon:", error);
     }
 
     // 5. append sig length and sig data to transaction.data
@@ -132,29 +132,37 @@ export async function executeSwap(token_to_sell:string, token_to_buy:string, amo
       nonce: nonce,
     });
 
-    console.log("Transaction hash:", transaction);
+    //console.log("Transaction hash:", transaction);
+    return {
+      success:true,
+      hash: transaction
+    };
     
   } else if (signature && quote.transaction.data) {
-    // Handle ERC-20 token case (requires signature)
-    const signedTransaction = await publicClient.signTransaction({
-      account: publicClient.account,
-      chain: publicClient.chain,
-      gas: !!quote?.transaction.gas
-        ? BigInt(quote?.transaction.gas)
-        : undefined,
-      to: quote?.transaction.to,
-      data: quote.transaction.data,
-      gasPrice: !!quote?.transaction.gasPrice
-        ? BigInt(quote?.transaction.gasPrice)
-        : undefined,
-      nonce: nonce,
-    });
+      // Handle ERC-20 token case (requires signature)
+      const signedTransaction = await publicClient.signTransaction({
+        account: publicClient.account,
+        chain: publicClient.chain,
+        gas: !!quote?.transaction.gas
+          ? BigInt(quote?.transaction.gas)
+          : undefined,
+        to: quote?.transaction.to,
+        data: quote.transaction.data,
+        gasPrice: !!quote?.transaction.gasPrice
+          ? BigInt(quote?.transaction.gasPrice)
+          : undefined,
+        nonce: nonce,
+      });
 
-    const hash = await publicClient.sendRawTransaction({
-      serializedTransaction: signedTransaction,
-    });
+      const hash = await publicClient.sendRawTransaction({
+        serializedTransaction: signedTransaction,
+      });
 
-    console.log("Transaction hash:", hash);
+      //console.log("Transaction hash:", hash);
+      return {
+        success:true,
+        hash: hash
+      };
 
     }
 }
