@@ -11,6 +11,7 @@ import { getStakingBalanceTool } from "./getStakingBalance";
 import { getStakingRateFromMONTool } from "./getStakingRateFromMON";
 import { getStakingRateFromAprMONTool } from "./getStakingRateFromAprMON";
 import { stakeMONTool } from "./stakeMON";
+import { unstakeMONTool } from "./unstakeMON";
 
 export interface ToolConfig<T = any> {
   /**
@@ -92,4 +93,8 @@ export const tools: Record<string, ToolConfig> = {
    * Stake MON in aPriori protocol
    */
    stake_mon: stakeMONTool,
+  /**
+   * Untake MON in aPriori protocol
+   */
+    unstake_mon: unstakeMONTool,
 };

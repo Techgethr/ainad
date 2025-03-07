@@ -1,28 +1,28 @@
-import { stake } from "../src/apriori/stakeMon";
+import { unstake } from "../src/apriori/unStakeMon";
 import type { ToolConfig } from "./allTools.js";
 import { formatEther } from "viem";
 
 import type { StakeArgs } from "../interface/index.js";
 
 /**
- * Stake a specific amount of MON in aPriori platform
+ * Unstake a specific amount of MON in aPriori platform
  *
  * This tool takes a single parameter, the amount to stake
  * from.
  */
-export const stakeMONTool: ToolConfig<StakeArgs> = {
+export const unstakeMONTool: ToolConfig<StakeArgs> = {
   definition: {
     type: "function",
     function: {
-      name: "stake_mon",
-      description: "Stake a specific amount of MON in aPriori platform",
+      name: "unstake_mon",
+      description: "Unstake a specific amount of MON in aPriori platform",
       parameters: {
         type: "object",
         properties: {
           amount: {
             type: "number",
             //pattern: "^0x[a-fA-F0-9]{40}$",
-            description: "The amount in MON to stake",
+            description: "The amount in MON to unstake",
           },
         },
         required: ["amount"],
@@ -30,11 +30,11 @@ export const stakeMONTool: ToolConfig<StakeArgs> = {
     },
   },
   handler: async ({ amount }) => {
-    return await stakeAmount(amount);
+    return await unstakeAmount(amount);
   },
 };
 
-async function stakeAmount(amount:number) {
-  const balanceAprMON = await stake(amount);
-  return formatEther(balanceAprMON);
+async function unstakeAmount(amount:number) {
+  const balanceAprMON = await unstake(amount);
+  return balanceAprMON;
 }

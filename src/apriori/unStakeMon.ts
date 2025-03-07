@@ -11,16 +11,16 @@ export async function unstake(amount:number) {
         client: publicClient,
       });
     const totalAmount = amount * 10**18;
-    const waitTime = await aprMONContract.read.withdrawalWaitTime();
+    //const waitTime = await aprMONContract.read.withdrawalWaitTime();
     //console.log("Amount: "+totalAmount);
-    // const { request } = await publicClient.simulateContract({
-    //     account: publicClient.account,
-    //     address: aprMON_CONTRACT_ID,
-    //     abi: aprMON_ABI,
-    //     functionName: 'requestRedeem',
-    //     args: [BigInt(totalAmount),publicClient.account.address,publicClient.account.address ]
-    //   });
-    // await publicClient.writeContract(request);
-    console.log("Waittime: "+waitTime);
-    return waitTime;
+    const { request } = await publicClient.simulateContract({
+        account: publicClient.account,
+        address: aprMON_CONTRACT_ID,
+        abi: aprMON_ABI,
+        functionName: 'requestRedeem',
+        args: [BigInt(totalAmount),publicClient.account.address,publicClient.account.address ]
+      });
+    await publicClient.writeContract(request);
+    //console.log("Waittime: "+waitTime);
+    return true;
 }
