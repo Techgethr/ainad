@@ -15,13 +15,16 @@ There are already many frameworks designed to connect AI agents to Blockchain, b
 - Focused on the Monad ecosystem (already integrated with some protocols and extensible in a few steps).
 - Ability to execute several on-chain actions with a single instruction (for example: "swap 0.3 USDC to MON and then use that MON to stake it").
 
+## Mode
+For now, AINad works in a CLI mode, in the future, it will be available to integrate in other platforms, such as messaging.
+
 
 ## Features
 
 - **Conversational Interface**: Engage with the assistant to perform blockchain operations through natural language.
 - **Wallet Operations**: Check wallet balances, last transactions, retrieve connected wallet addresses, and more.
 - **Transaction Management**: Send transactions (coins and tokens) with customizable parameters.
-- **Trading Management**: Ask for prices and make swaps using [0x Protocol](https://0x.org/).
+- **Trading Management**: Ask for prices and make swaps using [0x Swap API](https://0x.org/).
 - **Staking Management**: Check your staked tokens, stake and unstake using [aPriori Protocol](https://www.apr.io/).
 - **Error Handling**: Robust error handling and feedback for failed operations.
 
