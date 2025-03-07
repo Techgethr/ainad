@@ -82,6 +82,16 @@ export interface SendTransactionArgs {
 }
 
 /**
+ * Arguments for the stake_mon and unstake_mon tools
+ */
+ export interface StakeArgs {
+  /**
+   * The amount to stake/unstake
+   */
+  amount: number;
+}
+
+/**
  * Arguments for the execute_swap tool
  */
  export interface ExecuteSwapArgs {

@@ -1,4 +1,4 @@
-import { getAprMONFromMON, getMONFromAprMON } from "../src/apriori/fetchRates";
+import { getMONFromAprMON } from "../src/apriori/fetchRates";
 import type { ToolConfig } from "./allTools.js";
 import { formatEther } from "viem";
 

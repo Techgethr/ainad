@@ -10,6 +10,7 @@ import { executeSwapTool } from "./executeSwapTokens";
 import { getStakingBalanceTool } from "./getStakingBalance";
 import { getStakingRateFromMONTool } from "./getStakingRateFromMON";
 import { getStakingRateFromAprMONTool } from "./getStakingRateFromAprMON";
+import { stakeMONTool } from "./stakeMON";
 
 export interface ToolConfig<T = any> {
   /**
@@ -87,4 +88,8 @@ export const tools: Record<string, ToolConfig> = {
    * Execute a swap between 2 tokens
    */
    execute_swap: executeSwapTool,
+  /**
+   * Stake MON in aPriori protocol
+   */
+   stake_mon: stakeMONTool,
 };
