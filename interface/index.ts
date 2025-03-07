@@ -50,6 +50,10 @@ export interface SendTransactionArgs {
    * Paymaster input
    */
   paymasterInput?: `0x${string}`;
+  /**
+   * coin/token to send
+   */
+   token?: string;
 }
 
 

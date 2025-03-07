@@ -1,8 +1,9 @@
 // Importing necessary functions and types for transaction handling
-import { parseEther } from "viem"; // Function to convert ETH to Wei
+import { parseEther, getContract } from "viem"; // Function to convert ETH to Wei
 import { createViemWalletClient } from "../src/viem/createViemWalletClient.js"; // Function to create a Viem wallet client
 import type { ToolConfig } from "./allTools.js"; // Type definition for tool configurations
 import type { SendTransactionArgs } from "../interface/index.js"; // Type definition for send transaction arguments
+import {tokensAvailable, abiByToken} from "../src/constants/tokens";
 
 // Configuration for the send transaction tool
 export const sendTransactionTool: ToolConfig<SendTransactionArgs> = {
@@ -85,6 +86,11 @@ export const sendTransactionTool: ToolConfig<SendTransactionArgs> = {
             description: "Paymaster input",
             optional: true,
           },
+          token: {
+            type: "string",
+            description: "The contract Id of the token/coin to send",
+            optional: true,
+          },
         },
         required: ["to"],
       },
@@ -109,32 +115,54 @@ async function sendTransaction({
   factoryDeps,
   paymaster,
   paymasterInput,
+  token
 }: SendTransactionArgs) {
   try {
     // Creating a Viem wallet client instance
     const walletClient = createViemWalletClient();
 
     // Sending the transaction with the provided parameters
-    const hash = await walletClient.sendTransaction({
-      to,
-      value: value ? parseEther(value) : undefined,
-      data,
-      nonce: nonce || undefined,
-      gasPrice: gasPrice ? parseEther(gasPrice) : undefined,
-      accessList: accessList || undefined,
-      customData: {
-        factoryDeps: factoryDeps || undefined,
-        paymaster: paymaster || undefined,
-        paymasterInput: paymasterInput || undefined,
-      },
-    });
-
-    // Returning the transaction hash and a success message
-    return {
-      success: true,
-      hash,
-      message: `Transaction sent successfully. Hash: ${hash}`,
-    };
+    //console.log("Token id: "+token);
+    if(token == undefined || token == '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE') {
+      const hash = await walletClient.sendTransaction({
+        to,
+        value: value ? parseEther(value) : undefined,
+        data,
+        nonce: nonce || undefined,
+        gasPrice: gasPrice ? parseEther(gasPrice) : undefined,
+        accessList: accessList || undefined,
+        customData: {
+          factoryDeps: factoryDeps || undefined,
+          paymaster: paymaster || undefined,
+          paymasterInput: paymasterInput || undefined,
+        },
+      });
+  
+      // Returning the transaction hash and a success message
+      return {
+        success: true,
+        hash,
+        message: `Transaction sent successfully. Hash: ${hash}`,
+      };
+    } else {
+      const tokenOrigin = tokensAvailable.find((t) => t.contractId === token);
+      const amountWithDecimals = Number(value) * 10** tokenOrigin.decimals;
+      const tokenToSend = abiByToken.find((t) => t.contractId === token);
+      const { request } = await walletClient.simulateContract({
+        account: walletClient.account,
+        address: token,
+        abi: tokenToSend?.ABI,
+        functionName: 'transfer',
+        args: [to,amountWithDecimals ]
+      });
+      const tx = await walletClient.writeContract(request);
+      return {
+        success: true,
+        tx,
+        message: `Transaction sent successfully. Hash: ${tx}`,
+      };
+    }
+    
   } catch (error) {
     // Handling errors and returning an error message
     //console.error(error);

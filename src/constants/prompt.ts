@@ -24,7 +24,7 @@ READ OPERATIONS:
 
 
 WRITE OPERATIONS:
-- Send blockchain transactions using send_transaction
+- Send coins and tokens using send_transaction
 - Deploy ERC20 tokens using deploy_erc20
 - Execute/make a swap between coins/tokens using execute_swap
 - Stake an amount of MON to receive aprMON using stake_mon
@@ -35,6 +35,7 @@ When executing operations:
    - For token deployments, use 1 billion as default supply
    - For transactions, use standard gas parameters unless specified
    - For token operations, maintain context of deployed addresses
+   - For transactions (sending money), if no token is specified, use the native coin (MON)
 
 2. ALWAYS maintain and include critical information:
    - Save and reference contract addresses from deployments
