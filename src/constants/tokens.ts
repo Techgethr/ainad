@@ -3,6 +3,10 @@ import { USDT_ABI} from "./abi/usdt";
 import { WBTC_ABI} from "./abi/wbtc";
 import { WETH_ABI} from "./abi/weth";
 import { WMON_ABI} from "./abi/wmon";
+import { GMON_ABI} from "./abi/gmon";
+import { MAMABTC_ABI} from "./abi/mamaBTC";
+import { WSOL_ABI} from "./abi/wsol";
+import { NSTR_ABI} from "./abi/nstr";
 
 interface Token {
     name: string;        // Nombre del token
@@ -48,6 +52,30 @@ export const tokensAvailable: Token[] = [
         decimals: 18,
         contractId: "0xcf5a6076cfa32686c0Df13aBaDa2b40dec133F1d",
     },
+    {
+        name: "gMON",
+        symbol: "gMON",
+        decimals: 18,
+        contractId: "0xaEef2f6B429Cb59C9B2D7bB2141ADa993E8571c3",
+    },
+    {
+        name: "Mama BTC",
+        symbol: "mamaBTC",
+        decimals: 8,
+        contractId: "0x3B428Df09c3508D884C30266Ac1577f099313CF6",
+    },
+    {
+        name: "Wrapped SOL",
+        symbol: "WSOL",
+        decimals: 9,
+        contractId: "0x5387C85A4965769f6B0Df430638a1388493486F1",
+    },
+    {
+        name: "Nostra",
+        symbol: "NSTR",
+        decimals: 18,
+        contractId: "0xc85548e0191cD34Be8092B0D42Eb4e45Eba0d581",
+    },
   ];
 
 export const abiByToken = [
@@ -70,7 +98,23 @@ export const abiByToken = [
     {
         contractId: "0xcf5a6076cfa32686c0Df13aBaDa2b40dec133F1d",
         ABI: WBTC_ABI
-    }
+    },
+    {
+        contractId: "0xaEef2f6B429Cb59C9B2D7bB2141ADa993E8571c3",
+        ABI: GMON_ABI
+    },
+    {
+        contractId: "0x3B428Df09c3508D884C30266Ac1577f099313CF6",
+        ABI: MAMABTC_ABI
+    },
+    {
+        contractId: "0x5387C85A4965769f6B0Df430638a1388493486F1",
+        ABI: WSOL_ABI
+    },
+    {
+        contractId: "0xc85548e0191cD34Be8092B0D42Eb4e45Eba0d581",
+        ABI: NSTR_ABI
+    },
 ]
 
 export const concatenatedTokens = tokensAvailable
