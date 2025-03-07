@@ -56,10 +56,10 @@ export async function executeSwap(token_to_sell:string, token_to_buy:string, amo
               //console.log("Approving Permit2 to spend sellToken...", request);
               // set approval
               const hash = await sellToken.write.approve(request.args);
-            //   console.log(
-            //     "Approved Permit2 to spend sellToken.",
-            //     await publicClient.waitForTransactionReceipt({ hash })
-            //   );
+              // console.log(
+              //   "Approved Permit2 to spend sellToken.",
+              //   await publicClient.waitForTransactionReceipt({ hash })
+              // );
             } catch (error) {
               //console.log("Error approving Permit2:", error);
             }
@@ -79,8 +79,8 @@ export async function executeSwap(token_to_sell:string, token_to_buy:string, amo
   );
 
   const quote = await quoteResponse.json();
-  //console.log(`Fetching quote to swap 0.0001  for USDC`);
-  //console.log("quoteResponse: ", quote);
+  // console.log(`Fetching quote to swap 0.0001  for USDC`);
+  // console.log("quoteResponse: ", quote);
 
   // 4. sign permit2.eip712 returned from quote
   let signature: Hex | undefined;
