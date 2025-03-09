@@ -4,6 +4,8 @@
 
 **AINad** is a powerful tool designed to interact with [Monad network](https://www.monad.xyz/) following the principles of the [PostWeb by Outlier Ventures](http://postweb.io/). It leverages OpenAI's GPT-4o-mini model to provide a conversational interface for users to perform various blockchain operations, such as checking wallet balances, sending transactions, and more. 
 
+**Video demo**: https://youtu.be/WJ3ctFTT0-Q
+
 ## What is the problem?
 Blockchain networks have brought many new opportunities to millions (if not billions) of people, but the problem lies in the interaction, since Web3 has not managed to popularize such opportunities because it is complex to use for non-technical users (managing wallets, signing transactions, many approvals before spending, among others).
 
